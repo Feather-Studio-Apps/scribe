@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scribe. — FAQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F8F7F5;
+    --primary: #2C2C2A;
+    --muted: #B4B2A9;
+    --accent: #2C2C2A;
+    --divider: rgba(44,44,42,0.08);
+    --max: 640px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1C1C1E;
+      --primary: #F0EFEC;
+      --muted: #6C6C70;
+      --divider: rgba(240,239,236,0.08);
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 48px 24px 80px;
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; }
+
+  header { margin-bottom: 48px; }
+
+  .app-name {
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .page-title {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .section { margin-bottom: 40px; }
+
+  .section-label {
+    font-family: 'Caveat', cursive;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--divider);
+    padding: 20px 0;
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--divider); }
+
+  .question {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+
+  .answer {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--divider);
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--muted);
+  }
+
+  a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="app-name">Scribe.</span>
+    <span class="page-title">Frequently Asked Questions</span>
+  </header>
+
+  <div class="section">
+    <div class="section-label">Getting started</div>
+
+    <div class="faq-item">
+      <div class="question">What is Scribe.?</div>
+      <div class="answer">Scribe. is a daily notes app designed to feel like writing on paper. You write notes for today, scratch them out when done, and navigate between yesterday, today, and tomorrow. For anything else, there's the agenda.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">How do I add a note?</div>
+      <div class="answer">Tap <em>+ note...</em> at the bottom of the screen. Choose the pen icon to type or the mic icon to record a voice note. Hit return or done when you're finished.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">How do I add a time to a note?</div>
+      <div class="answer">Tap a note to select it, then tap the clock icon that appears at the bottom. Pick your time and tap done — the note will sort itself into the right position automatically.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Notes & gestures</div>
+
+    <div class="faq-item">
+      <div class="question">How do I scratch out a note?</div>
+      <div class="answer">Swipe horizontally across a note. A single stroke gives a clean line, a back-and-forth motion gives a double line, and a zigzag gives a squiggle. The note stays visible — it's part of your day's history.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">How do I undo a scratch?</div>
+      <div class="answer">Swipe across the scratched note again. The scratch is removed and the note returns to its normal state.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">What's the difference between scratching and deleting?</div>
+      <div class="answer">Scratching leaves the note visible but crossed out — a record of what you completed. Deleting removes it entirely. To delete, tap a note to select it, then tap the bin icon.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">How do I edit a note?</div>
+      <div class="answer">Tap a note to select it, then tap the pen icon that appears at the bottom. The text field opens with the existing content ready to edit.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Navigation</div>
+
+    <div class="faq-item">
+      <div class="question">How do I see yesterday or tomorrow?</div>
+      <div class="answer">Tap the faded day letters in the bottom corners — left for yesterday, right for tomorrow. The home screen covers just three days. For anything else, use the agenda.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">How do I access the agenda?</div>
+      <div class="answer">Tap the <em>···</em> at the top right of the home screen and choose agenda. From there you can navigate any month and tap any date to open it.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Voice notes</div>
+
+    <div class="faq-item">
+      <div class="question">How do voice notes work?</div>
+      <div class="answer">Tap <em>+ note...</em>, then the mic icon. Speak your note, then tap done. Scribe. transcribes your words and adds them as a note. Voice notes require a Scribe. Pro upgrade.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">What languages does voice transcription support?</div>
+      <div class="answer">Scribe. uses your device's preferred language for transcription. It works with any language supported by iOS Speech Recognition, including English and French.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">iCloud & sync</div>
+
+    <div class="faq-item">
+      <div class="question">How does iCloud sync work?</div>
+      <div class="answer">When enabled in settings, your notes sync automatically across all your devices signed into the same iCloud account. Sync requires a Scribe. Pro upgrade.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">Is my data private?</div>
+      <div class="answer">Yes. Your notes are stored in your private iCloud database and are only accessible to you. Feather Studio has no access to your notes.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Scribe. Pro</div>
+
+    <div class="faq-item">
+      <div class="question">What's included in Scribe. Pro?</div>
+      <div class="answer">Pro unlocks voice transcription, iCloud sync across devices, and a selection of additional handwritten fonts. It's a one-time purchase — no subscription.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">Can I restore my purchase?</div>
+      <div class="answer">Yes. If you've already purchased Pro, you can restore it at any time from the upgrade screen without being charged again.</div>
+    </div>
+  </div>
+
+  <footer>
+    Scribe. by Feather Studio &nbsp;·&nbsp; <a href="mailto:featherstudio@proton.me">featherstudio@proton.me</a>
+  </footer>
+
+</div>
+</body>
+</html>
