@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scribe. — Daily Notes, Handwritten</title>
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F8F7F5;
+    --primary: #2C2C2A;
+    --muted: #B4B2A9;
+    --faint: rgba(44,44,42,0.06);
+    --divider: rgba(44,44,42,0.08);
+    --max: 1100px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1C1C1E;
+      --primary: #F0EFEC;
+      --muted: #6C6C70;
+      --faint: rgba(240,239,236,0.05);
+      --divider: rgba(240,239,236,0.08);
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* NAV */
+  nav {
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-logo {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 28px;
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .nav-cta {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 18px;
+    color: var(--bg);
+    background: var(--primary);
+    padding: 8px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-text {}
+  .hero-eyebrow {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .hero-headline {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: clamp(52px, 6vw, 72px);
+    color: var(--primary);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 400px;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 20px;
+    color: var(--bg);
+    background: var(--primary);
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-secondary {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 20px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .hero-phone {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .phone-frame {
+    width: min(280px, 100%);
+    border-radius: 44px;
+    overflow: hidden;
+    box-shadow: 0 32px 64px rgba(0,0,0,0.12);
+  }
+  .phone-frame img {
+    width: 100%;
+    display: block;
+  }
+
+  /* FEATURES GRID */
+  .features {
+    padding: 80px 0;
+    border-top: 1px solid var(--divider);
+  }
+  .section-label {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    display: block;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--divider);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .feature-cell {
+    background: var(--bg);
+    padding: 36px 32px;
+  }
+  .feature-icon {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 28px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .feature-title {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 24px;
+    color: var(--primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .feature-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* SHOWCASE — alternating */
+  .showcase {
+    padding: 80px 0;
+    border-top: 1px solid var(--divider);
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+  .showcase-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .showcase-row.reverse { direction: rtl; }
+  .showcase-row.reverse > * { direction: ltr; }
+  .showcase-text {}
+  .showcase-tag {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .showcase-title {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: clamp(36px, 4vw, 48px);
+    color: var(--primary);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .showcase-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .showcase-phone {
+    display: flex;
+    justify-content: center;
+  }
+  .showcase-phone .phone-frame {
+    width: min(240px, 100%);
+  }
+
+  /* DUAL PHONES */
+  .dual-phones {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .dual-phones .phone-frame {
+    width: min(200px, 45%);
+  }
+  .dual-phones .phone-frame:first-child {
+    transform: translateY(20px);
+  }
+
+  /* PRO */
+  .pro-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--divider);
+  }
+  .pro-card {
+    background: var(--faint);
+    border: 1px solid var(--divider);
+    border-radius: 24px;
+    padding: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .pro-title {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: clamp(40px, 4vw, 56px);
+    color: var(--primary);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .pro-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .pro-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pro-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .pro-features li::before {
+    content: '—';
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 18px;
+    color: var(--muted);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .pro-badge {
+    display: inline-block;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 16px;
+    color: var(--muted);
+    border: 1px solid var(--divider);
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 0;
+    border-top: 1px solid var(--divider);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 22px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-links a:hover { color: var(--primary); }
+  .footer-credit {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 60px 0 48px;
+      gap: 48px;
+    }
+    .hero-phone { order: -1; }
+    .phone-frame { width: min(220px, 80%); }
+    .features-grid { grid-template-columns: 1fr; }
+    .showcase-row,
+    .showcase-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 40px; }
+    .pro-card { grid-template-columns: 1fr; padding: 36px 24px; gap: 40px; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a href="#" class="nav-logo">Scribe.</a>
+    <a href="https://apps.apple.com/app/id6800784599" class="nav-cta">Download</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Feather Studio</span>
+      <h1 class="hero-headline">your day,<br>written.</h1>
+      <p class="hero-sub">Write it down. Cross it out. Start again. A daily notes app that feels like paper — not a productivity system.</p>
+      <div class="hero-actions">
+        <a href="https://apps.apple.com/app/id6800784599" class="btn-primary">Download free</a>
+        <a href="#features" class="btn-secondary">learn more →</a>
+      </div>
+    </div>
+    <div class="hero-phone">
+      <div class="phone-frame">
+        <img src="Home_View.png" alt="Scribe home screen showing handwritten daily notes">
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FEATURES -->
+<div class="wrap">
+  <section class="features" id="features">
+    <span class="section-label">what makes Scribe. different</span>
+    <div class="features-grid">
+      <div class="feature-cell">
+        <span class="feature-icon">✦</span>
+        <div class="feature-title">feels like paper</div>
+        <p class="feature-body">Handwritten fonts, organic note rotation, and a clean page that gets out of your way.</p>
+      </div>
+      <div class="feature-cell">
+        <span class="feature-icon">~</span>
+        <div class="feature-title">scratch it out</div>
+        <p class="feature-body">Swipe to cross notes out. Single line, double line, or squiggle — your gesture decides.</p>
+      </div>
+      <div class="feature-cell">
+        <span class="feature-icon">◌</span>
+        <div class="feature-title">three days, one page</div>
+        <p class="feature-body">Yesterday, today, tomorrow. Everything else lives in the agenda. No infinite scroll.</p>
+      </div>
+      <div class="feature-cell">
+        <span class="feature-icon">♩</span>
+        <div class="feature-title">speak your notes</div>
+        <p class="feature-body">Tap the mic. Talk. Scribe. transcribes in your language — English, French, and more.</p>
+      </div>
+      <div class="feature-cell">
+        <span class="feature-icon">◎</span>
+        <div class="feature-title">live on lock screen</div>
+        <p class="feature-body">Pin any note as a Live Activity. See it without unlocking. Dismiss when done.</p>
+      </div>
+      <div class="feature-cell">
+        <span class="feature-icon">⊞</span>
+        <div class="feature-title">widgets & controls</div>
+        <p class="feature-body">Capture a note from your home screen or lock screen controls — without opening the app.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SHOWCASE 1 — Voice -->
+<div class="wrap">
+  <section class="showcase">
+    <div class="showcase-row">
+      <div class="showcase-text">
+        <span class="showcase-tag">voice input</span>
+        <h2 class="showcase-title">speak your<br>thoughts.</h2>
+        <p class="showcase-body">Tap the mic, talk, and Scribe. writes it down. The waveform pulses as you speak. Tap done and your note appears on the page — ready to scratch out or pin to your lock screen.</p>
+      </div>
+      <div class="showcase-phone">
+        <div class="phone-frame">
+          <img src="Audio_View.png" alt="Scribe voice recording with animated waveform">
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOWCASE 2 — Live Activity -->
+    <div class="showcase-row reverse">
+      <div class="showcase-text">
+        <span class="showcase-tag">live activity</span>
+        <h2 class="showcase-title">keep it<br>front of mind.</h2>
+        <p class="showcase-body">Pin any note to your lock screen. It stays there in your chosen font until you're done with it. Tap to open the app, or dismiss it straight from the lock screen.</p>
+      </div>
+      <div class="showcase-phone">
+        <div class="phone-frame">
+          <img src="Live_Activity_View.png" alt="Scribe Live Activity on iPhone lock screen">
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOWCASE 3 — Fonts & Dark -->
+    <div class="showcase-row">
+      <div class="showcase-text">
+        <span class="showcase-tag">typography & themes</span>
+        <h2 class="showcase-title">your style,<br>your page.</h2>
+        <p class="showcase-body">Choose from a collection of handwritten fonts. Switch between light and dark — Scribe. adapts completely. The page is yours.</p>
+      </div>
+      <div class="dual-phones">
+        <div class="phone-frame">
+          <img src="Font_Right_Side.png" alt="Scribe dark theme with custom handwritten font">
+        </div>
+        <div class="phone-frame">
+          <img src="Font_Left_Side.png" alt="Scribe light theme typography options">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRO -->
+<div class="wrap">
+  <section class="pro-section">
+    <div class="pro-card">
+      <div>
+        <span class="pro-badge">Scribe. Pro</span>
+        <h2 class="pro-title">go further<br>with Pro.</h2>
+        <p class="pro-sub">One purchase. No subscription. Unlock the features that make Scribe. even more yours.</p>
+        <a href="https://apps.apple.com/app/id6800784599" class="btn-primary">Get Scribe. free</a>
+      </div>
+      <ul class="pro-features">
+        <li>Voice transcription — speak your notes in any language</li>
+        <li>iCloud sync — your notes on every device</li>
+        <li>Additional fonts — more handwritten styles to choose from</li>
+        <li>One-time purchase — pay once, keep forever</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<div class="wrap">
+  <footer>
+    <a href="#" class="footer-logo">Scribe.</a>
+    <div class="footer-links">
+      <a href="https://feather-studio-apps.github.io/scribe/support.html">FAQ</a>
+      <a href="https://feather-studio-apps.github.io/scribe/privacy.html">Privacy</a>
+      <a href="https://feather-studio-apps.github.io/scribe/terms.html">Terms</a>
+      <a href="mailto:featherstudio@proton.me">Contact</a>
+    </div>
+    <span class="footer-credit">Daren Irlen - Feather Studio · 2026</span>
+  </footer>
+</div>
+
+</body>
+</html>
